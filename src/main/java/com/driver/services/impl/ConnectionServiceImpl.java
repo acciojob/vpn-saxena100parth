@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class ConnectionServiceImpl implements ConnectionService {
     @Autowired
@@ -75,7 +76,6 @@ public class ConnectionServiceImpl implements ConnectionService {
             else
                 throw new Exception("Unable to connect");
         }
-
     }
     @Override
     public User disconnect(int userId) throws Exception {
@@ -87,10 +87,10 @@ public class ConnectionServiceImpl implements ConnectionService {
         user.setConnected(false);
         userRepository2.save(user);
         return user;
-
     }
     @Override
     public User communicate(int senderId, int receiverId) throws Exception {
+
         User sender = userRepository2.findById(senderId).get();
         User receiver = userRepository2.findById(receiverId).get();
 
@@ -142,6 +142,5 @@ public class ConnectionServiceImpl implements ConnectionService {
                 }
             }
         }
-
     }
 }

@@ -3,12 +3,15 @@ package com.driver.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="country")
+@Table(name = "country")
 public class Country {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private CountryName countryName;
+
     private String code;
 
     @ManyToOne
@@ -19,12 +22,9 @@ public class Country {
     @JoinColumn
     private User user;
 
-    public Country(int id, CountryName countryName, String code, ServiceProvider serviceProvider, User user) {
-        this.id = id;
+    public Country(CountryName countryName, String code) {
         this.countryName = countryName;
         this.code = code;
-        this.serviceProvider = serviceProvider;
-        this.user = user;
     }
 
     public Country() {

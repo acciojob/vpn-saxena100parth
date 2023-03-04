@@ -16,8 +16,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository3;
+
     @Autowired
     ServiceProviderRepository serviceProviderRepository3;
+
     @Autowired
     CountryRepository countryRepository3;
 
@@ -25,7 +27,7 @@ public class UserServiceImpl implements UserService {
     public User register(String username, String password, String countryName) throws Exception{
         if(countryName.equalsIgnoreCase("ind") || countryName.equalsIgnoreCase("aus") || countryName.equalsIgnoreCase("usa") || countryName.equalsIgnoreCase("jpn") || countryName.equalsIgnoreCase("chi")) {
             User user = new User();
-            user.setUserName(username);
+            user.setUsername(username);
             user.setPassword(password);
 
             Country country = new Country();
@@ -67,7 +69,6 @@ public class UserServiceImpl implements UserService {
         }else{
             throw new Exception("Country not found");
         }
-
     }
 
     @Override
@@ -80,6 +81,5 @@ public class UserServiceImpl implements UserService {
 
         serviceProviderRepository3.save(serviceProvider);
         return user;
-
     }
 }

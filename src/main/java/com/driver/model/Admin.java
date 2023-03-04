@@ -10,22 +10,17 @@ import java.util.List;
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-private int id;
-private String userName;
-private String password;
+    private  int id;
 
-@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
-List<ServiceProvider> serviceProviderList = new ArrayList<>();
+    private String username;
 
-    public Admin() {
-    }
+    private String password;
 
-    public Admin(int id, String userName, String password, List<ServiceProvider> serviceProviderList) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-        this.serviceProviderList = serviceProviderList;
-    }
+    @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL)
+    private List<ServiceProvider> serviceProviders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
+    private List<Connection> connectionList = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -35,12 +30,12 @@ List<ServiceProvider> serviceProviderList = new ArrayList<>();
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -51,14 +46,22 @@ List<ServiceProvider> serviceProviderList = new ArrayList<>();
         this.password = password;
     }
 
-    public List<ServiceProvider> getServiceProviderList() {
-        return serviceProviderList;
+    public List<ServiceProvider> getServiceProviders() {
+        return serviceProviders;
     }
 
-    public void setServiceProviderList(List<ServiceProvider> serviceProviderList) {
-        this.serviceProviderList = serviceProviderList;
+    public void setServiceProviders(List<ServiceProvider> serviceProviders) {
+        this.serviceProviders = serviceProviders;
     }
 
+    public List<Connection> getConnectionList() {
+        return connectionList;
+    }
 
+    public void setConnectionList(List<Connection> connectionList) {
+        this.connectionList = connectionList;
+    }
 
+    public Admin() {
+    }
 }
